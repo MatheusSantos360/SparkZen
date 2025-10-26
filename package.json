@@ -6,6 +6,9 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "release": "pnpm run build && changeset publish",
