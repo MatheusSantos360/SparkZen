@@ -1,1 +1,3 @@
-export const add = (a: number, b: number) => a + b; // Publish!!
+import { sparkzen } from "./core/sparkzen";
+
+export default sparkzen;

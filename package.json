@@ -4,6 +4,7 @@
   "version": "0.0.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "type": "module",
   "types": "dist/index.d.ts",
   "private": false,
   "publishConfig": {
@@ -18,5 +19,8 @@
     "@changesets/cli": "^2.29.7",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "fastify": "^5.6.1"
   }
 }
