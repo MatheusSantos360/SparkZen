@@ -12,13 +12,15 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",
     "tsup": "^8.5.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.6"
   },
   "dependencies": {
     "fastify": "^5.6.1"
