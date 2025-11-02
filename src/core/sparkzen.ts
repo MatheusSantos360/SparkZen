@@ -1,9 +1,9 @@
 import fastify from "fastify";
 import { loadRoutes } from "./loadRoutes";
 
-export function sparkzen() {
+export async function sparkzen() {
   const app = fastify();
-  loadRoutes(app);
+  await loadRoutes(app);
 
   return app;
 }
