@@ -4,6 +4,7 @@ import type { FastifyInstance } from "fastify";
 import { pathToFileURL } from "url";
 import fs from "fs/promises";
 import path from "path";
+import { dynamicImport } from "./routing/dynamicImport.js";
 
 export const loadRoutes = async (app: FastifyInstance, directory?: string) => {
   const production = process.env.NODE_ENV === "production";
@@ -22,7 +23,7 @@ export const loadRoutes = async (app: FastifyInstance, directory?: string) => {
       const modulePath = pathToFileURL(finalPath).href;
       const modulePathWithQuery = production ? modulePath : `${modulePath}?t=${Date.now()}`;
 
-      const routeModule = await import(modulePathWithQuery);
+      const routeModule = await dynamicImport(modulePathWithQuery);
 
       if (isValidRoute(routeModule)) {
         const method = item.name.replace(new RegExp(`${ext}$`), "").toLowerCase();
