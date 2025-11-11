@@ -2,7 +2,7 @@ import path from "path";
 
 export const getRouteUrl = (filePath: string): string => {
   const production = process.env.NODE_ENV === "production";
-  const basePath = production ? path.join(process.cwd()) : path.join(process.cwd(), "src", "routes");
+  const basePath = production ? process.cwd() : path.join(process.cwd(), "src", "routes");
 
   let routePath = filePath
     .replace(basePath, "")
