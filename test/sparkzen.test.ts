@@ -1,9 +1,15 @@
 import { describe, expect, test, vi } from "vitest";
 
 vi.mock("fastify", () => {
-  return {
-    default: vi.fn(() => ({ listen() {}, route() {} })),
-  };
+  const fastifyMock = vi.fn(() => ({
+    listen: vi.fn(),
+    route: vi.fn(),
+    withTypeProvider: vi.fn(function () {
+      //@ts-ignore
+      return this;
+    }),
+  }));
+  return { default: fastifyMock };
 });
 
 vi.mock("../src/core/loadRoutes.ts", () => {
@@ -20,6 +26,11 @@ describe("sparkzen", () => {
   test("should created a Fastify instance", async () => {
     await sparkzen();
     expect(fastify).toHaveBeenCalledOnce();
+  });
+
+  test("should use TypeBox type provider", async () => {
+    const app = await sparkzen();
+    expect(app.withTypeProvider).toHaveBeenCalledOnce();
   });
 
   test("should call loadRoutes()", async () => {
