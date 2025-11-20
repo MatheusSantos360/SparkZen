@@ -15,7 +15,7 @@ type ResponsePayload<Schema extends RouteSchema, Status extends number> = Schema
     : never
   : never;
 
-type TypedReply<Schema extends RouteSchema> = Omit<FastifyReply, "send" | "status"> & {
+export type TypedReply<Schema extends RouteSchema> = Omit<FastifyReply, "send" | "status"> & {
   status: <Status extends Extract<keyof NonNullable<Schema["response"]>, number>>(
     statusCode: Status
   ) => {
