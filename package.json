@@ -2,12 +2,12 @@
   "name": "sparkzen",
   "version": "0.0.3",
   "license": "MIT",
+  "author": "Matheus dos Santos Paixão",
   "type": "module",
   "private": false,
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "sideEffects": false,
+  "bin": "./dist/cli/index.js",
   "files": [
     "dist"
   ],
@@ -15,8 +15,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --out-dir dist",
-    "dev": "tsup src/index.ts --format esm --dts --watch --out-dir dist",
+    "build": "tsup src/index.ts src/cli/index.ts --format esm --dts --out-dir dist",
+    "dev": "tsup src/index.ts src/cli/index.ts --format esm --dts --watch --out-dir dist",
     "lint": "tsc --noEmit",
     "test": "vitest",
     "release": "pnpm run build && changeset publish"
@@ -24,6 +24,7 @@
   "dependencies": {
     "@fastify/type-provider-typebox": "^6.1.0",
     "@sinclair/typebox": "^0.34.41",
+    "commander": "^14.0.2",
     "fastify": "^5.6.1"
   },
   "devDependencies": {
