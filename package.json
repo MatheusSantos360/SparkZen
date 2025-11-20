@@ -22,6 +22,8 @@
     "release": "pnpm run build && changeset publish"
   },
   "dependencies": {
+    "@fastify/type-provider-typebox": "^6.1.0",
+    "@sinclair/typebox": "^0.34.41",
     "fastify": "^5.6.1"
   },
   "devDependencies": {
