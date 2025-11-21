@@ -25,10 +25,15 @@
     "@fastify/type-provider-typebox": "^6.1.0",
     "@sinclair/typebox": "^0.34.41",
     "commander": "^14.0.2",
-    "fastify": "^5.6.1"
+    "degit": "^2.8.4",
+    "enquirer": "^2.4.1",
+    "fastify": "^5.6.1",
+    "fs-extra": "^11.3.2"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",
+    "@types/degit": "^2.8.6",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^24.9.2",
     "tsup": "^8.5.0",
     "typescript": "^5.6.3",
