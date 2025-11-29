@@ -28,7 +28,8 @@
     "degit": "^2.8.4",
     "enquirer": "^2.4.1",
     "fastify": "^5.6.1",
-    "fs-extra": "^11.3.2"
+    "fs-extra": "^11.3.2",
+    "logfy-x": "^1.0.3"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",
