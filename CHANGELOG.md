@@ -1,5 +1,11 @@
 # my-package
 
+## 1.0.0
+
+### Major Changes
+
+- 3d9b02a: First major release!
+
 ## 0.0.3
 
 ### Patch Changes
