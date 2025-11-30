@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import { Command } from "commander";
-import { bgBlue } from "logfy-x";
+import { bgBlue, bold } from "logfy-x";
 import path from "path";
 
 const dev = new Command()
@@ -11,7 +11,7 @@ const dev = new Command()
 
     const tsxPath = path.join(projectPath, "node_modules", ".bin", process.platform === "win32" ? "tsx.cmd" : "tsx");
 
-    console.log(`\n${bgBlue(" 🚀 DEV  ")} Starting development server...\n`);
+    console.log(`\n${bgBlue(bold(" 🚀 DEV  "))} Starting development server...\n`);
 
     execSync(`${tsxPath} watch src/index.ts`, {
       cwd: projectPath,

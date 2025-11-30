@@ -3,7 +3,7 @@ import { Command } from "commander";
 import degit from "degit";
 import enquirer from "enquirer";
 import fs from "fs-extra";
-import { bgBlue, blue, error, logfy, success } from "logfy-x";
+import { bgBlue, blue, bold, error, logfy, success } from "logfy-x";
 import path from "path";
 
 const { prompt } = enquirer;
@@ -55,10 +55,10 @@ const promptOptions = async () => {
 };
 
 const cloneProjectTemplate = async (projectName: string, targetPath: string) => {
-  console.log(`\n${bgBlue(" 📁 CREATING ")} ${projectName}`);
+  console.log(`\n${bgBlue(bold(" 📁 CREATING "))} ${projectName}`);
   await fs.mkdirp(path.dirname(targetPath));
 
-  console.log(`\n${bgBlue(" 🔁 COPYING ")} Default template`);
+  console.log(`\n${bgBlue(bold(" 🔁 COPYING "))} Default template`);
 
   const template = degit("MatheusSantos360/sparkzen-templates/default", {
     cache: false,
@@ -87,7 +87,7 @@ const cloneProjectTemplate = async (projectName: string, targetPath: string) => 
 };
 
 const installDependencies = (packageManager: string, targetPath: string) => {
-  console.log(`\n${bgBlue(" ⚡ DEPENDENCIES ")} Installing with ${blue(packageManager)}:\n`);
+  console.log(`\n${bgBlue(bold(" ⚡ DEPENDENCIES "))} Installing with ${blue(packageManager)}:\n`);
   try {
     execSync(`${packageManager} install`, {
       cwd: targetPath,
@@ -115,7 +115,7 @@ const init = new Command()
 
       console.log()
       success("CREATED!", `Project "${blue(projectName)}" has been created successfully.`);
-      console.log(`\n${bgBlue(" 🔥 NEXT STEPS ")} To get started:\n`);
+      console.log(`\n${bgBlue(bold(" 🔥 NEXT STEPS "))} To get started:\n`);
       console.log(`    cd ${blue(projectName)}`);
       console.log(`    ${blue(packageManager)} run ${blue("dev")}\n`);
     } catch (err) {
