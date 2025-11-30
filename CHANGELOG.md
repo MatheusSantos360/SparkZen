@@ -1,5 +1,11 @@
 # my-package
 
+## 1.0.1
+
+### Patch Changes
+
+- d5a27fc: Logs & refactors
+
 ## 1.0.0
 
 ### Major Changes
