@@ -5,6 +5,7 @@ import { pathToFileURL } from "url";
 import fs from "fs/promises";
 import path from "path";
 import { dynamicImport } from "./routing/dynamicImport.js";
+import { bgRedBright, bold, dim, red } from "logfy-x";
 
 export const loadRoutes = async (app: FastifyInstance, directory?: string) => {
   const production = process.env.NODE_ENV === "production";
@@ -29,7 +30,7 @@ export const loadRoutes = async (app: FastifyInstance, directory?: string) => {
         const method = item.name.replace(new RegExp(`${ext}$`), "").toLowerCase();
         registerRoute(app, routeModule, method, finalPath);
       } else {
-        console.warn(`Invalid route module: ${modulePath}`);
+        console.log(bgRedBright(bold(` ROUTE `)) + ` ${red("Invalid Route (No handler exported)")} ${dim(finalPath)}`);
       }
     }
   }

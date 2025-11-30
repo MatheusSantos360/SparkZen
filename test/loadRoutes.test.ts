@@ -54,7 +54,7 @@ describe("loadRoutes", () => {
   });
 
   test("should warn for invalid route modules", async () => {
-    const consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => { });
+    const consoleLogSpy = vi.spyOn(console, "log").mockImplementation(() => { });
     vi.spyOn(fs, "readdir")
       .mockResolvedValueOnce([{ name: "subdir", isDirectory: () => true, isFile: () => false } as any])
       .mockResolvedValueOnce([{ name: "get.ts", isDirectory: () => false, isFile: () => true } as any]);
@@ -64,6 +64,7 @@ describe("loadRoutes", () => {
     const app = fastify();
     await loadRoutes(app, "test/routes");
 
-    expect(consoleWarnSpy).toHaveBeenCalled();
+    expect(consoleLogSpy).toHaveBeenCalledOnce();
+    expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining("Invalid Route (No handler exported)"));
   });
 });

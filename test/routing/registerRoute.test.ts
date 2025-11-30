@@ -96,7 +96,7 @@ describe("registerRoute", () => {
 
     registerRoute(app, routeModule, "post", "/orders/post.ts");
 
-    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("[POST]"));
+    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("POST"));
     expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("/api/orders"));
   });
 });
