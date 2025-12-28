@@ -6,7 +6,7 @@ export const getRouteUrl = (filePath: string): string => {
 
   let routePath = filePath
     .replace(basePath, "")
-    .replace(/\\/g, "/")
+    .replaceAll('\\', "/")
     .replace(/\.(js|ts)$/, "");
 
   const segments = routePath.split("/");
@@ -16,5 +16,5 @@ export const getRouteUrl = (filePath: string): string => {
 
   routePath = routePath.replace(/\[(\w+)\]/g, ":$1");
 
-  return `/api${routePath}`.replace(/\/+/g, "/");
+  return `/api${routePath}`.replace(/\/+/g, "/").replaceAll("dist/routes/", "");
 }
