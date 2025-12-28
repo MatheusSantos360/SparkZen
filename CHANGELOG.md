@@ -1,5 +1,11 @@
 # my-package
 
+## 1.0.2
+
+### Patch Changes
+
+- d0e4948: fix
+
 ## 1.0.1
 
 ### Patch Changes
