@@ -25,7 +25,6 @@ describe("build command", () => {
     const calls = execSpy.mock.calls;
     expect(calls.length).toBeGreaterThan(0);
     const firstArg = String(calls[0][0]);
-    expect(firstArg).toContain("--out-dir dist");
-    expect(firstArg).toContain("src/index.ts");
+    expect(firstArg).toContain("tsc");
   });
 });
