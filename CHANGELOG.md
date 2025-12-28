@@ -1,5 +1,11 @@
 # my-package
 
+## 1.1.1
+
+### Patch Changes
+
+- c7027dd: another fix
+
 ## 1.1.0
 
 ### Minor Changes
