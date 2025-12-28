@@ -1,7 +1,7 @@
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
 import { Command } from "commander";
 import { bgGreenBright, bold } from "logfy-x";
-import path from "path";
+import path from "node:path";
 
 const build = new Command()
   .name("build")
@@ -12,7 +12,7 @@ const build = new Command()
 
     const tsupPath = path.join(process.cwd(), "node_modules", ".bin", "tsup");
 
-    execSync(`${tsupPath} src/index.ts --format esm --dts --out-dir dist`, {
+    execSync(`${tsupPath} src/index.ts --format esm --out-dir dist`, {
       cwd: projectPath,
       stdio: "inherit",
       shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh",
