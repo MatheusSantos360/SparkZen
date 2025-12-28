@@ -1,5 +1,11 @@
 # my-package
 
+## 1.1.0
+
+### Minor Changes
+
+- fix
+
 ## 1.0.2
 
 ### Patch Changes
