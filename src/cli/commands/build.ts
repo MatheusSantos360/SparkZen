@@ -10,7 +10,7 @@ const build = new Command()
     console.log(`${bgGreenBright(bold(" 📦 BUILD "))} Building the project...\n`);
 
 
-    execSync(`npx tsc`, {
+    execSync(`npx tsup`, {
       cwd: projectPath,
       stdio: "inherit",
       shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh",

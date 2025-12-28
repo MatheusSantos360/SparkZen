@@ -25,6 +25,6 @@ describe("build command", () => {
     const calls = execSpy.mock.calls;
     expect(calls.length).toBeGreaterThan(0);
     const firstArg = String(calls[0][0]);
-    expect(firstArg).toContain("tsc");
+    expect(firstArg).toContain("npx tsup");
   });
 });

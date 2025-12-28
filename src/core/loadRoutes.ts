@@ -3,15 +3,15 @@ import { registerRoute } from "./routing/registerRoute.js";
 import type { FastifyInstance } from "fastify";
 import { pathToFileURL } from "url";
 import fs from "fs/promises";
-import path from "path";
 import { dynamicImport } from "./routing/dynamicImport.js";
 import { bgRedBright, bold, dim, red } from "logfy-x";
+import path from "path";
 
 export const loadRoutes = async (app: FastifyInstance, directory?: string) => {
   const production = process.env.NODE_ENV === "production";
   const ext = production ? ".js" : ".ts";
   const currentDir = process.cwd();
-  const routesPath = directory || (production ? path.join(currentDir) : path.join(currentDir, "src", "routes"));
+  const routesPath = directory || (production ? path.join(currentDir, "dist", "routes") : path.join(currentDir, "src", "routes"));
   const items = await fs.readdir(routesPath, { withFileTypes: true });
 
   for (const item of items) {
