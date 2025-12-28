@@ -16,7 +16,7 @@ describe("build command", () => {
     vi.restoreAllMocks();
   });
 
-  it("calls execSync with tsup build command", () => {
+  it("calls execSync with tsc build command", () => {
     const action = (build as any)._actionHandler;
     expect(typeof action).toBe("function");
 
