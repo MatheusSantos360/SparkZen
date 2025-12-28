@@ -1,5 +1,11 @@
 # my-package
 
+## 1.0.2
+
+### Patch Changes
+
+- 641fdf8: remove the "--dts" on the build command
+
 ## 1.0.1
 
 ### Patch Changes
