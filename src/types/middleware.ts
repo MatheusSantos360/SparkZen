@@ -12,7 +12,7 @@ export type MiddlewareFunction<Schema extends RouteSchema = RouteSchema> = (
     Headers: Schema["headers"] extends TSchema ? Static<EnsureSchema<Schema["headers"]>> : {};
   }>,
   reply: TypedReply<Schema>,
-  done: () => void
+  done: () => void,
 ) => void | Promise<void>;
 
 export type Middleware<Schema extends RouteSchema = RouteSchema> = MiddlewareFunction<Schema> | MiddlewareFunction<Schema>[];

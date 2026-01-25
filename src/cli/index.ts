@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { name, version } from "../../package.json";
 import { registerCommands } from "./commands";
-import { name, version } from "../../package.json"
 
 const program = new Command();
 

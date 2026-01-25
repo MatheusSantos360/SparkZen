@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 
 export const getRouteUrl = (filePath: string): string => {
   const production = process.env.NODE_ENV === "production";
@@ -6,7 +6,7 @@ export const getRouteUrl = (filePath: string): string => {
 
   let routePath = filePath
     .replace(basePath, "")
-    .replaceAll('\\', "/")
+    .replaceAll("\\", "/")
     .replace(/\.(js|ts)$/, "");
 
   const segments = routePath.split("/");
@@ -14,7 +14,7 @@ export const getRouteUrl = (filePath: string): string => {
 
   routePath = segments.join("/");
 
-  routePath = routePath.replace(/\[(\w+)\]/g, ":$1");
+  routePath = routePath.replaceAll(/\[(\w+)\]/g, ":$1");
 
-  return `/api${routePath}`.replace(/\/+/g, "/").replaceAll("dist/routes/", "");
-}
+  return `/api${routePath}`.replaceAll(/\/+/g, "/").replaceAll("dist/routes/", "");
+};

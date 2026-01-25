@@ -1,5 +1,5 @@
 import type { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import fastify from "fastify";
+import fastify, { type FastifyListenOptions } from "fastify";
 import { bgBlueBright, bgGreenBright, blue, bold, dim, error } from "logfy-x";
 import { loadRoutes } from "./loadRoutes";
 
@@ -20,17 +20,18 @@ export async function sparkzen() {
 
   const originalListen = app.listen.bind(app);
 
-  app.listen = async function (opts: any) {
+  app.listen = async function (options?: FastifyListenOptions) {
     try {
       sparkzenBanner("STARTING SERVER", bgGreenBright);
 
-      const result = await originalListen(opts);
+      const result = await originalListen(options);
+      const runningAt = `http://localhost:${options?.port}`;
 
-      console.log(`${bgGreenBright(bold(" SERVER "))} Running at: ${blue(`http://localhost:${opts.port}`)}\n`);
+      console.log(`${bgGreenBright(bold(" SERVER "))} Running at: ${blue(runningAt)}\n`);
 
       return result;
     } catch (err) {
-      error("ERROR", (err as Error).message);
+      error("ERROR", (err as Error).name + `: ${(err as Error).message}\n\n${(err as Error).stack}`);
     }
   } as any;
 

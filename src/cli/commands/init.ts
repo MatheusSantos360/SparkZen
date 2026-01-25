@@ -1,10 +1,10 @@
-import { execSync } from "child_process";
 import { Command } from "commander";
 import degit from "degit";
 import enquirer from "enquirer";
 import fs from "fs-extra";
 import { bgBlue, blue, bold, error, logfy, success } from "logfy-x";
-import path from "path";
+import { execSync } from "node:child_process";
+import path from "node:path";
 
 const { prompt } = enquirer;
 
@@ -34,7 +34,7 @@ const promptOptions = async () => {
       name: "projectName",
       message: "Project name:",
       required: true,
-      validate: (v: string) => (v && v.trim() ? true : "Please enter a project name"),
+      validate: (v: string) => (v?.trim() ? true : "Please enter a project name"),
     },
     {
       type: "select",
@@ -113,7 +113,7 @@ const init = new Command()
         installDependencies(packageManager, targetPath);
       }
 
-      console.log()
+      console.log();
       success("CREATED!", `Project "${blue(projectName)}" has been created successfully.`);
       console.log(`\n${bgBlue(bold(" 🔥 NEXT STEPS "))} To get started:\n`);
       console.log(`    cd ${blue(projectName)}`);
