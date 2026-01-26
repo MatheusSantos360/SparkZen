@@ -19,7 +19,7 @@ export const processFile = async (app: FastifyInstance, item: Dirent<string>, fi
 
   if (isValidRoute(routeModule)) {
     const method = item.name.replace(new RegExp(`${ext}$`), "").toLowerCase();
-    registerRoute(app, routeModule as RouteFile<true>, method, finalPath);
+    await registerRoute(app, routeModule as RouteFile<true>, method, finalPath);
   } else {
     console.log(bgRedBright(bold(` ROUTE `)) + ` ${red("Invalid Route (No handler exported)")} ${dim(finalPath)}`);
   }

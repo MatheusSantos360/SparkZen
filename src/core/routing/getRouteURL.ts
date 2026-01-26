@@ -1,6 +1,8 @@
 import path from "node:path";
+import { getConfig } from "../functions/getConfig";
 
-export const getRouteUrl = (filePath: string): string => {
+export const getRouteUrl = async (filePath: string): Promise<string> => {
+  const { routePrefix } = await getConfig();
   const production = process.env.NODE_ENV === "production";
   const basePath = production ? process.cwd() : path.join(process.cwd(), "src", "routes");
 
@@ -16,5 +18,5 @@ export const getRouteUrl = (filePath: string): string => {
 
   routePath = routePath.replaceAll(/\[(\w+)\]/g, ":$1");
 
-  return `/api${routePath}`.replaceAll(/\/+/g, "/").replaceAll("dist/routes/", "");
+  return `${routePrefix}${routePath}`.replaceAll(/\/+/g, "/").replaceAll("dist/routes/", "");
 };

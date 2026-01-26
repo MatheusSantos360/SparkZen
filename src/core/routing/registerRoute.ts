@@ -4,8 +4,8 @@ import { bgBlueBright, dim, error } from "logfy-x";
 import type { RouteFile } from "../../types/route";
 import { getRouteUrl } from "./getRouteURL";
 
-export const registerRoute = (app: FastifyInstance, routeModule: RouteFile<true>, method: string, finalPath: string) => {
-  const routeURL = getRouteUrl(finalPath);
+export const registerRoute = async (app: FastifyInstance, routeModule: RouteFile<true>, method: string, finalPath: string) => {
+  const routeURL = await getRouteUrl(finalPath);
   const methodColors: { [key: string]: "green" | "yellow" | "blue" | "red" | "magentaBright" } = {
     get: "green",
     post: "yellow",
