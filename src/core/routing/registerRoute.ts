@@ -1,6 +1,6 @@
-import type { FastifyInstance, preHandlerHookHandler, RouteHandlerMethod, RouteOptions } from "fastify";
+import { FastifyError, type FastifyInstance, type preHandlerHookHandler, type RouteHandlerMethod, type RouteOptions } from "fastify";
 import * as colors from "logfy-x";
-import { bgBlueBright } from "logfy-x";
+import { bgBlueBright, dim, error } from "logfy-x";
 import type { RouteFile } from "../../types/route";
 import { getRouteUrl } from "./getRouteURL";
 
@@ -24,7 +24,19 @@ export const registerRoute = (app: FastifyInstance, routeModule: RouteFile<true>
     preHandler: routeModule.middlewares as preHandlerHookHandler,
   };
 
-  app.route(routeOptions);
+  try {
+    app.route(routeOptions);
+  } catch (err) {
+    const routeError = err as FastifyError;
+    console.log();
+    error(`${routeError.name} ${dim(finalPath)}`, [
+      `Route Path: ${finalPath}`,
+      `API Path: ${colors.blue(routeURL)}`,
+      `Message: ${routeError.message}`,
+      `Code: ${routeError.code}`,
+      `Stack: ${routeError.stack}`,
+    ]);
+  }
 
   console.log(bgBlueBright(colors.bold(` ROUTE `)) + ` ${colors[methodColors[method]](method.toUpperCase())} ${routeURL} ${colors.dim(finalPath)}`);
 };
