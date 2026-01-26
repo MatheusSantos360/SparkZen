@@ -7,11 +7,8 @@ import { manageListen } from "./functions/manageListen";
 import { sparkzenBanner } from "./functions/sparkzenBanner";
 import { loadRoutes } from "./loadRoutes";
 
-// process.env.NODE_ENV = "production"
-
 export async function sparkzen() {
   await setConfig();
-  console.log(process.env.NODE_ENV)
 
   sparkzenBanner("INITIALIZING API", bgBlueBright);
 
