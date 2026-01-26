@@ -13,7 +13,8 @@ export const getConfig = async () => {
 
 export const setConfig = async () => {
   if (await configFileExists()) {
-    config = await import(pathToFileURL(path.resolve(process.cwd(), packageConfigs.configFileName)).href);
+    const fileConfig = await import(pathToFileURL(path.resolve(process.cwd(), packageConfigs.configFileName)).href);
+    config = { ...defaultConfig, ...fileConfig };
   }
 };
 
