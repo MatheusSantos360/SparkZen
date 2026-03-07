@@ -1,5 +1,11 @@
 # my-package
 
+## 1.2.0
+
+### Minor Changes
+
+- c493efa: Better Experience and Bug Fix
+
 ## 1.1.2
 
 ### Patch Changes
