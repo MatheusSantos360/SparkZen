@@ -11,8 +11,8 @@ describe("isValidRoute", () => {
   });
 
   test("should return false for invalid routes", () => {
-    const alsoInvalidRoute = { default: "not a function" };
+    const alsoInvalidRoute: unknown = { default: "not a function" };
 
-    expect(isValidRoute(alsoInvalidRoute)).toBe(false);
+    expect(isValidRoute(alsoInvalidRoute as any)).toBe(false);
   });
 });
