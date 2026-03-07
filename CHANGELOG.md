@@ -1,5 +1,11 @@
 # my-package
 
+## 1.1.2
+
+### Patch Changes
+
+- another fix?
+
 ## 1.1.1
 
 ### Patch Changes
