@@ -1,6 +1,6 @@
-import { execSync } from "node:child_process";
 import { Command } from "commander";
 import { bgGreenBright, bold } from "logfy-x";
+import { execSync } from "node:child_process";
 
 const build = new Command()
   .name("build")

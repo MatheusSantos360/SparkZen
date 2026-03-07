@@ -7,10 +7,8 @@ import { manageListen } from "./functions/manageListen";
 import { sparkzenBanner } from "./functions/sparkzenBanner";
 import { loadRoutes } from "./loadRoutes";
 
-await setConfig();
-
 export async function sparkzen() {
-
+  await setConfig();
   sparkzenBanner("INITIALIZING API", bgBlueBright);
 
   const app = fastify().withTypeProvider<TypeBoxTypeProvider>();

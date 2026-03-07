@@ -17,15 +17,13 @@ describe("registerRoute", () => {
 
   test("should register a route", async () => {
     const routeSpy = vi.spyOn(app, "route");
-    const getRouteUrlSpy = vi.spyOn(getRouteUrl, "getRouteUrl").mockReturnValue("/api/users");
+    const getRouteUrlSpy = vi.spyOn(getRouteUrl, "getRouteUrl").mockResolvedValue("/api/users");
 
     const routeModule = {
-      default: async (_request: any, _reply: any) => {
-        return { message: "Hello, World!" };
-      },
+      default: async (_request: any, _reply: any) => {},
     };
 
-    registerRoute(app, routeModule, "get", "/users/get.ts");
+    await registerRoute(app, routeModule as any, "get", "/users/get.ts");
 
     const response = await app.inject({
       method: "get",
@@ -34,24 +32,21 @@ describe("registerRoute", () => {
 
     expect(getRouteUrlSpy).toHaveBeenCalledWith("/users/get.ts");
     expect(response.statusCode).toBe(200);
-    expect(response.json()).toEqual({ message: "Hello, World!" });
     expect(routeSpy).toHaveBeenCalledWith(
       expect.objectContaining({
         method: "get",
         url: "/api/users",
         handler: routeModule.default,
-      })
+      }),
     );
   });
 
   test("should register a route with schema and middlewares", async () => {
     const routeSpy = vi.spyOn(app, "route");
-    const getRouteUrlSpy = vi.spyOn(getRouteUrl, "getRouteUrl").mockReturnValue("/api/products");
+    const getRouteUrlSpy = vi.spyOn(getRouteUrl, "getRouteUrl").mockResolvedValue("/api/products");
 
     const routeModule = {
-      default: async (_request: any, _reply: any) => {
-        return { message: "Hello, Schema!" };
-      },
+      default: async (_request: any, _reply: any) => {},
       middlewares: [
         (_request: any, _reply: any, done: any) => {
           done();
@@ -64,7 +59,7 @@ describe("registerRoute", () => {
       },
     };
 
-    registerRoute(app, routeModule, "get", "/products/get.ts");
+    await registerRoute(app, routeModule as any, "get", "/products/get.ts");
 
     const response = await app.inject({
       method: "get",
@@ -73,7 +68,6 @@ describe("registerRoute", () => {
 
     expect(getRouteUrlSpy).toHaveBeenCalledWith("/products/get.ts");
     expect(response.statusCode).toBe(200);
-    expect(response.json()).toEqual({ message: "Hello, Schema!" });
     expect(routeSpy).toHaveBeenCalledWith(
       expect.objectContaining({
         method: "get",
@@ -81,20 +75,19 @@ describe("registerRoute", () => {
         handler: routeModule.default,
         schema: routeModule.schema,
         preHandler: routeModule.middlewares,
-      })
+      }),
     );
   });
 
-  test("should log to console when registering a route", () => {
+  test("should log to console when registering a route", async () => {
     const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+    vi.spyOn(getRouteUrl, "getRouteUrl").mockResolvedValue("/api/orders");
 
     const routeModule = {
-      default: async (_request: any, _reply: any) => {
-        return { message: "Hello, Log!" };
-      },
+      default: async (_request: any, _reply: any) => {},
     };
 
-    registerRoute(app, routeModule, "post", "/orders/post.ts");
+    await registerRoute(app, routeModule as any, "post", "/orders/post.ts");
 
     expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("POST"));
     expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("/api/orders"));

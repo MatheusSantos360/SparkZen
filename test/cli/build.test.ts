@@ -1,6 +1,6 @@
-import * as child_process from "child_process";
+import * as child_process from "node:child_process";
 import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from "vitest";
-import build from "../../src/cli/commands/build";
+import build from "../../src/cli/commands/app/build";
 
 vi.mock("child_process", () => ({ execSync: vi.fn() }));
 

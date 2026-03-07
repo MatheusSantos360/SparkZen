@@ -3,7 +3,6 @@ import build from "./commands/app/build";
 import dev from "./commands/app/dev";
 import start from "./commands/app/start";
 import init from "./commands/init";
-import create from "./commands/routes/create";
 
 export function registerCommands(program: Command) {
   // App
@@ -11,7 +10,4 @@ export function registerCommands(program: Command) {
   program.addCommand(dev);
   program.addCommand(build);
   program.addCommand(start);
-
-  // Routes
-  program.addCommand(create);
 }
