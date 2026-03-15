@@ -6,6 +6,7 @@ const build = new Command()
   .name("build")
   .description("Build the project")
   .action(() => {
+    process.env.NODE_ENV = "production";
     const projectPath = process.cwd();
     console.log(`${bgGreenBright(bold(" 📦 BUILD "))} Building the project...\n`);
 

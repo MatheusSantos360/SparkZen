@@ -7,6 +7,7 @@ const dev = new Command()
   .name("dev")
   .description("Run the project in development mode")
   .action(() => {
+    process.env.NODE_ENV = "dev";
     const projectPath = process.cwd();
 
     const tsxPath = path.join(projectPath, "node_modules", ".bin", process.platform === "win32" ? "tsx.cmd" : "tsx");
